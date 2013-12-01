@@ -7,8 +7,8 @@
                :page-template "templ"}
               {:tag "clojure_tips"
                :list-template "index"
-               :page-template "templ"}]
+               :page-template "templ2"}]
  :single-pages [{:file-name "01"
                  :template "templ"}
                 {:file-name "02"
-                 :template "templ"}]}
+                 :template "templ2"}]}
