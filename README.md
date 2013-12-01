@@ -3,7 +3,7 @@
 Static site compiler. For now accepts the following input formats:
 
 Templates:
-* Mustache
+* Html with Mustache
 * Hiccup
 
 Posts:
