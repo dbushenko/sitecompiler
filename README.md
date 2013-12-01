@@ -2,8 +2,14 @@
 
 Static site compiler. For now accepts the following input formats:
 
-Templates: Mustache
-Posts: Markdown
+Templates:
+* Mustache
+* Hiccup
+
+Posts:
+* Markdown
+* Html
+* Hiccup
 
 ## Usage
 
