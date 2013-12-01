@@ -13,7 +13,8 @@
                :prev (make-list-file-name tag (if (= ind 1) nil (dec ind)))
                :current (make-list-file-name tag ind)
                :files ch
-               :tag tag}))
+               :tag tag
+               :latest (first ch) }))
           chunks (range (count chunks)))))
 
 (defn prepare-tag [pg-count files tag]

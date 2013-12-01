@@ -7,7 +7,7 @@
                  [hiccup "1.0.4"]
                  [markdown-clj "0.9.35"]
                  [de.ubercode.clostache/clostache "1.3.1"]
-                 [light-dependency "0.1.0-SNAPSHOT"]]
+                 [hiccup "1.0.4"]]
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[org.clojure/tools.namespace "0.2.3"]
                                   [org.clojure/java.classpath "0.2.0"]]}}

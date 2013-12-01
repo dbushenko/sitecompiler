@@ -56,16 +56,17 @@
                                             hcrenderer])
 
         ;; Сгенерить одиночные страницы без тегов
-        ;; single-pages (pg/generate-single-pages config
-        ;;                                        templates
-        ;;                                        input-files
-        ;;                                        [mstrenderer
-        ;;                                         hcrenderer])
+        single-pages (pg/generate-single-pages config
+                                               templates
+                                               input-files
+                                               [mstrenderer
+                                                hcrenderer])
         ]
     {:config config
+     :tags-chunks tags-chunks
      :tags-lists tags-lists
      :tags-pages tags-pages
      :input-files input-files
-     ;:single-pages single-pages
+     :single-pages single-pages
      } ))
 
