@@ -10,12 +10,9 @@
   
   Parser  
   (parse [this fl]
-    (let [lines (-> fl
-                    clojure.java.io/reader
-                    line-seq)
-          parsed-header (header/parse-file-content lines (.getPath fl))]
-      (assoc parsed-header
-        :content (md-to-html-string (:content parsed-header))))))
+    (let [h (header/parse-file fl)]
+      (assoc h
+        :content (md-to-html-string (:content h))))))
 
 
 (defn new-md-parser []

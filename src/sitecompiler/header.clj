@@ -40,3 +40,9 @@
         (recur (next lines)
                (concat header (parse-header-line line fname)))))))
 
+
+(defn parse-file [fl]
+  (let [lines (-> fl
+                  clojure.java.io/reader
+                  line-seq)]
+    (parse-file-content lines (.getPath fl))))

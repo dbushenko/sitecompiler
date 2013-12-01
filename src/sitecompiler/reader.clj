@@ -21,11 +21,13 @@
 (defn parse-file [parsers fl]
   (let [ext (get-fname-extension (.getName fl))
         name (get-fname-without-extension (.getName fl))]
-    (first (map (fn [p] (if (.supported? p ext)
-                          (assoc (.parse p fl)
-                            :file-name name
-                            :file-ext ext)))
-                parsers))))
+    (first
+     (filter #(not (nil? %))
+             (map (fn [p] (if (.supported? p ext)
+                            (assoc (.parse p fl)
+                              :file-name name
+                              :file-ext ext)))
+                  parsers)))))
 
 (defn load-template [fl]
   (let [ext (get-fname-extension (.getName fl))
@@ -39,7 +41,6 @@
   (let [input-files (find-data-files (:input-dir config))
         templ-files (find-data-files (:templates-dir config))
         parse (partial parse-file parsers)]
-    {:input-files (filter #(not (nil? %))
-                          (map parse input-files))
-     :templates (doall (map load-template templ-files))} ))
+    {:input-files (doall (map parse input-files))
+     :templates (doall (map load-template templ-files))}))
 
