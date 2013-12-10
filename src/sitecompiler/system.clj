@@ -63,7 +63,6 @@
                                                 hcrenderer])
         ]
     {:config config
-     :tags-chunks tags-chunks
      :tags-lists tags-lists
      :tags-pages tags-pages
      :input-files input-files

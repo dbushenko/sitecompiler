@@ -36,7 +36,7 @@
       (if (or (empty? lines)
               (not (.startsWith line "#")))
         (let [h (apply hash-map header)]
-          (assoc h :content (reduce str lines)))
+          (assoc h :content (reduce #(str %1 %2 "\n") lines)))
         (recur (next lines)
                (concat header (parse-header-line line fname)))))))
 

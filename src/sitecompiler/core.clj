@@ -1,5 +1,6 @@
 (ns sitecompiler.core
-  (:require [sitecompiler.system :as sys]))
+  (:require [sitecompiler.system :as sys])
+  (:gen-class))
 
 (defn- save-file [output name content]
   (let [s java.io.File/separator
