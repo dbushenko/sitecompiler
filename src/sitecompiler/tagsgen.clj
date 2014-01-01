@@ -1,8 +1,8 @@
 (ns sitecompiler.tagsgen)
 
 (defn make-list-file-name [tag num]
-  (if (nil? num)
-    nil
+  (if (or (nil? num) (= num 1))
+    tag
     (str tag num)))
 
 (defn make-next-prev-chunk [chunks tag]
