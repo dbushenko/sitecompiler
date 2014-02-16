@@ -6,4 +6,6 @@
                :list-template "index"
                :page-template "main"}]
  :single-pages [{:file-name "promo"
-                 :template "main"}]}
+                 :template "main"}
+                {:file-name "authors"
+                 :template "authors"}]}

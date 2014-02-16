@@ -1,16 +1,17 @@
 (ns sitecompiler.tagsgen)
 
 (defn make-list-file-name [tag num]
-  (if (or (nil? num) (= num 1))
-    tag
+  (case num
+    1 tag
+    nil nil
     (str tag num)))
 
 (defn make-next-prev-chunk [chunks tag]
   (doall (map
           (fn [ch i]
             (let [ind (inc i)]
-              {:next (make-list-file-name tag (if (= ind (count chunks)) nil (inc ind)))
-               :prev (make-list-file-name tag (if (= ind 1) nil (dec ind)))
+              {:prev (make-list-file-name tag (if (= ind (count chunks)) nil (inc ind)))
+               :next (make-list-file-name tag (if (= ind 1) nil (dec ind)))
                :current (make-list-file-name tag ind)
                :files ch
                :tag tag
