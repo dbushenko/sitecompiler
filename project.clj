@@ -7,5 +7,6 @@
                  [io.aviso/pretty "0.1.10"]
                  [markdown-clj "0.9.43"]
                  [de.ubercode.clostache/clostache "1.3.1"]
-                 [hiccup "1.0.4"]]
+                 [hiccup "1.0.4"]
+                 [cuma "0.0.8"]]
   :main sitecompiler.core)

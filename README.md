@@ -3,13 +3,14 @@
 Static site compiler. For now accepts the following input formats:
 
 Templates:
-* Html with Mustache
-* Hiccup
+* Html with Mustache (https://github.com/fhd/clostache)
+* Hiccup (https://github.com/weavejester/hiccup)
+* Cuma (https://github.com/liquidz/cuma)
 
 Posts:
-* Markdown
+* Markdown (https://github.com/yogthos/markdown-clj)
 * Html
-* Hiccup
+* Hiccup (https://github.com/weavejester/hiccup)
 
 ## Usage
 

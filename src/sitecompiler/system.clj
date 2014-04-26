@@ -5,6 +5,7 @@
             [sitecompiler.htmlparser :as html]
             [sitecompiler.hcparser :as hcp]
             [sitecompiler.mustache :as mst]
+            [sitecompiler.cuma :as cuma]
             [sitecompiler.hiccup :as hc]
             [sitecompiler.tagsgen :as tg]
             [sitecompiler.pagesgen :as pg]))
@@ -35,6 +36,7 @@
         ;; Обработчики шаблонов (Mustache).
         mstrenderer (mst/new-mst-renderer)
         hcrenderer (hc/new-hc-renderer)
+        cumarenderer (cuma/new-cuma-renderer)
         
 
         ;; Собрать нужные тэги
@@ -53,14 +55,16 @@
                                            templates
                                            input-files
                                            [mstrenderer
-                                            hcrenderer])
+                                            hcrenderer
+                                            cumarenderer])
 
         ;; Сгенерить одиночные страницы без тегов
         single-pages (pg/generate-single-pages config
                                                templates
                                                input-files
                                                [mstrenderer
-                                                hcrenderer])
+                                                hcrenderer
+                                                cumarenderer])
         ]
     {:config config
      :tags-lists tags-lists
