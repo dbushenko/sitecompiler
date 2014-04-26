@@ -37,7 +37,10 @@
         mstrenderer (mst/new-mst-renderer)
         hcrenderer (hc/new-hc-renderer)
         cumarenderer (cuma/new-cuma-renderer)
-        
+
+        rendrers-list [mstrenderer
+                       hcrenderer
+                       cumarenderer]
 
         ;; Собрать нужные тэги
         tags-chunks (tg/chunks config
@@ -47,24 +50,19 @@
         tags-lists (tg/generate config
                                 templates
                                 tags-chunks
-                                [mstrenderer
-                                 hcrenderer])
+                                rendrers-list)
 
         ;; Сгенерить одиночные страницы по тегам
         tags-pages (pg/generate-tags-pages config
                                            templates
                                            input-files
-                                           [mstrenderer
-                                            hcrenderer
-                                            cumarenderer])
+                                           rendrers-list)
 
         ;; Сгенерить одиночные страницы без тегов
         single-pages (pg/generate-single-pages config
                                                templates
                                                input-files
-                                               [mstrenderer
-                                                hcrenderer
-                                                cumarenderer])
+                                               rendrers-list)
         ]
     {:config config
      :tags-lists tags-lists

@@ -1,4 +1,5 @@
-(ns sitecompiler.tagsgen)
+(ns sitecompiler.tagsgen
+  (:use io.aviso.ansi))
 
 (defn make-list-file-name [tag num]
   (case num
@@ -49,6 +50,10 @@
                                        fl-chunks)))
         renderer (first (filter #(.supported? % (:file-ext templ))
                                 renderers))]
+    (if (nil? renderer)
+      (do
+        (println (bold-red (str "Can't find renderer for " cfg-tag)))
+        (System/exit -1)))
     (doall (map #(-> %
                      (assoc :content (.render renderer (:content templ) %))
                      (dissoc :files))
