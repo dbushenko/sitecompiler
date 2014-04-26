@@ -60,11 +60,11 @@ The format of the input file should consist of following:
 
 The format of a header line is the following:
 
-    	   #header-name: header value
+    #header-name: header value
 
 Header name may be any string not containing whitespaces and colon sign. The value of this header is the rest of the string after the colon. For example:
 
-       	    #date: 2014-04-26
+    #date: 2014-04-26
 
 This line creates a header "date" with value "2014-04-26".
 
