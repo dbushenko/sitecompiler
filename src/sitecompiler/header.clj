@@ -18,10 +18,12 @@
     (apply hash-set (filter #(not (empty? %)) arr))))
 
 (defn parse-header-line [line fname]
+  (println "parse-header-line")
   (if (or (< (.length line) 4)
           (not (.startsWith line "#"))
           (= (.indexOf line ":") -1))
-    (throw (Exception. "Wrong header in file " fname)))
+    (do (println (bold-red (str "Wrong header in file " fname)))
+        (System/exit -1)))
   (let [s (.substring line 1)
         splitter (.indexOf s ":")
         content (.trim (.substring s (inc splitter)))
@@ -37,6 +39,7 @@
       (if (or (empty? lines)
               (not (.startsWith line "#")))
         (let [h (apply hash-map header)]
+          (println (bold-yellow (str "No header in " fname)))
           (assoc h :content (reduce #(str %1 %2 "\n") lines)))
         (recur (next lines)
                (concat header (parse-header-line line fname)))))))
