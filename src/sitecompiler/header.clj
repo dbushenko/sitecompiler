@@ -1,4 +1,5 @@
-(ns sitecompiler.header)
+(ns sitecompiler.header
+  (:use io.aviso.ansi))
 
 (def ^:dynamic *date-format* (java.text.SimpleDateFormat. "yyyy-MM-dd"))
 (def ^:dynamic *date-time-format* (java.text.SimpleDateFormat. "yyyy-MM-dd hh:mm"))
@@ -42,7 +43,12 @@
 
 
 (defn parse-file [fl]
-  (let [lines (-> fl
-                  clojure.java.io/reader
-                  line-seq)]
-    (parse-file-content lines (.getPath fl))))
+  (let [file-path (.getPath fl)]
+    (println (bold-green (str "Parsing " file-path)))
+    (let [lines (-> fl
+                    clojure.java.io/reader
+                    line-seq)]
+      (if (nil? lines)
+        (do (println (bold-red (str "File " file-path " has invalid format!")))
+            (System/exit -1)))
+      (parse-file-content lines file-path))))

@@ -17,13 +17,11 @@
 (defn save-tags-files [system]
   (let [tags-pages (:tags-pages system)
         output (-> system :config :output-dir)]
-    (dorun (map (fn [tag-page]
-                  (let [tag (:tag tag-page)
-                        files (:files tag-page)]
-                    (dorun (map #(save-file output
-                                            (str tag "-" (:file-name %))
-                                            (:content %))
-                            files))))
+    (dorun (map (fn [tag-page-list]
+                  (dorun (map #(save-file output
+                                          (:file-name %)
+                                          (:content %))
+                              tag-page-list)))
                 tags-pages))))
 
 (defn save-single-pages [system]
