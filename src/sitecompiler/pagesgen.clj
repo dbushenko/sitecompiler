@@ -1,4 +1,6 @@
-(ns sitecompiler.pagesgen)
+(ns sitecompiler.pagesgen
+  (:use io.aviso.ansi
+        sitecompiler.common))
 
 (defn- generate-all-tags-pages [templates renderers input-files cfg-tag]
   (let [templ (first (filter #(= (:file-name %) (:page-template cfg-tag)) templates))
@@ -6,6 +8,11 @@
                       input-files)
         renderer (first (filter #(.supported? % (:file-ext templ))
                                 renderers))]
+    (if (or (not templ) (not renderer))
+      (do (println (bold-red (str "Can't render tags pages for tag '" (:tag cfg-tag) "'!")))
+          (println "Template present:" (yes-no templ))
+          (println "Renderer present:" (yes-no renderer))
+          (System/exit -1)))
     {:tag (:tag cfg-tag)
      :files (doall (map #(assoc % :content (.render renderer (:content templ) %))
                         files))}))
@@ -24,6 +31,12 @@
                           input-files))
         renderer (first (filter #(.supported? % (:file-ext templ))
                                 renderers))]
+    (if (or (not templ) (not fl) (not renderer))
+      (do (println (bold-red (str "Can't render page '" (:file-name cfg) "'!")))
+          (println "Input file present:" (yes-no fl))
+          (println "Template present:" (yes-no templ))
+          (println "Renderer present:" (yes-no renderer))
+          (System/exit -1)))
     (assoc fl :content (.render renderer (:content templ) fl))))
 
 

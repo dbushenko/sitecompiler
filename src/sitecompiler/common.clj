@@ -9,3 +9,5 @@
 (defprotocol Renderer
   (render [this templ data]))
 
+(defn yes-no [val]
+  (if val "yes" "no"))
