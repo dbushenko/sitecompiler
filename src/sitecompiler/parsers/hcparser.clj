@@ -1,4 +1,4 @@
-(ns sitecompiler.hcparser
+(ns sitecompiler.parsers.hcparser
   (:require [sitecompiler.header :as header]
             [hiccup.core :as hc])
   (:use sitecompiler.common))

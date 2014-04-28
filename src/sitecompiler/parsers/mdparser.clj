@@ -1,4 +1,4 @@
-(ns sitecompiler.mdparser
+(ns sitecompiler.parsers.mdparser
   (:require [sitecompiler.header :as header])
   (:use markdown.core
         sitecompiler.common))

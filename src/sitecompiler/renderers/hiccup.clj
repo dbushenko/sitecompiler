@@ -1,4 +1,4 @@
-(ns sitecompiler.hiccup
+(ns sitecompiler.renderers.hiccup
   (:require [hiccup.core :as hc])
   (:use sitecompiler.common))
 

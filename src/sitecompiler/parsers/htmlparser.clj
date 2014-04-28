@@ -1,4 +1,4 @@
-(ns sitecompiler.htmlparser
+(ns sitecompiler.parsers.htmlparser
   (:require [sitecompiler.header :as header])
   (:use sitecompiler.common))
 

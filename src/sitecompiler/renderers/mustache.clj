@@ -1,4 +1,4 @@
-(ns sitecompiler.mustache
+(ns sitecompiler.renderers.mustache
   (:require [clostache.parser :as clst])
   (:use sitecompiler.common))
 

@@ -1,12 +1,12 @@
 (ns sitecompiler.system
   (:require [sitecompiler.config :as conf]
             [sitecompiler.reader :as rd]
-            [sitecompiler.mdparser :as md]
-            [sitecompiler.htmlparser :as html]
-            [sitecompiler.hcparser :as hcp]
-            [sitecompiler.mustache :as mst]
-            [sitecompiler.cuma :as cuma]
-            [sitecompiler.hiccup :as hc]
+            [sitecompiler.parsers.mdparser :as md]
+            [sitecompiler.parsers.htmlparser :as html]
+            [sitecompiler.parsers.hcparser :as hcp]
+            [sitecompiler.renderers.mustache :as mst]
+            [sitecompiler.renderers.cuma :as cuma]
+            [sitecompiler.renderers.hiccup :as hc]
             [sitecompiler.tagsgen :as tg]
             [sitecompiler.pagesgen :as pg]))
 
