@@ -6,6 +6,7 @@ Templates:
 * Html with Mustache (https://github.com/fhd/clostache)
 * Hiccup (https://github.com/weavejester/hiccup)
 * Cuma (https://github.com/liquidz/cuma)
+* Fleet (https://github.com/Flamefork/fleet)
 
 Posts:
 * Markdown (https://github.com/yogthos/markdown-clj)

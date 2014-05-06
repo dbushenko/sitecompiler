@@ -6,6 +6,7 @@
             [sitecompiler.parsers.hcparser :as hcp]
             [sitecompiler.renderers.mustache :as mst]
             [sitecompiler.renderers.cuma :as cuma]
+            [sitecompiler.renderers.fleet :as fleet]
             [sitecompiler.renderers.hiccup :as hc]
             [sitecompiler.tagsgen :as tg]
             [sitecompiler.pagesgen :as pg]))
@@ -37,10 +38,12 @@
         mstrenderer (mst/new-mst-renderer)
         hcrenderer (hc/new-hc-renderer)
         cumarenderer (cuma/new-cuma-renderer)
+        fleetrenderer (cuma/new-fleet-renderer)
 
         rendrers-list [mstrenderer
                        hcrenderer
-                       cumarenderer]
+                       cumarenderer
+                       fleetrenderer]
 
         ;; Собрать нужные тэги
         tags-chunks (tg/chunks config
