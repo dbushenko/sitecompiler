@@ -49,6 +49,12 @@
         tags-chunks (tg/chunks config
                                input-files)
 
+        ;; Сгенерить одиночные страницы без тегов
+        single-pages (pg/generate-single-pages config
+                                               templates
+                                               input-files
+                                               rendrers-list)
+
         ;; Сгенерировать списки страниц по тегам
         tags-lists (tg/generate config
                                 templates
@@ -61,11 +67,6 @@
                                            input-files
                                            rendrers-list)
 
-        ;; Сгенерить одиночные страницы без тегов
-        single-pages (pg/generate-single-pages config
-                                               templates
-                                               input-files
-                                               rendrers-list)
         ]
     {:config config
      :tags-lists tags-lists

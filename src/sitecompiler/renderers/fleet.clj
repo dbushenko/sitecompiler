@@ -10,7 +10,14 @@
   Renderer
   (render [this templ data]
     (let [r (fleet/fleet [data] templ)] ;; renderer arguments are stored in 'data'
-      (r data))))
+      (try
+        (r data)
+        (catch Exception e
+          (println templ)
+          (println "============================")
+          (println data)
+          (println "============================")
+          (println e))))))
 
 
 (defn new-fleet-renderer []
