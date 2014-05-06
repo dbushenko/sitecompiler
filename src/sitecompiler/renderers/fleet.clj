@@ -9,7 +9,8 @@
 
   Renderer
   (render [this templ data]
-     (fleet/fleet data templ)))
+    (let [r (fleet/fleet [data] templ)] ;; renderer arguments are stored in 'data'
+      (r data))))
 
 
 (defn new-fleet-renderer []

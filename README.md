@@ -83,6 +83,8 @@ The following values are available within the template:
 * tag -- current tag for which this list was generated;
 * latest -- latest file.
 
+In Fleet templates they are contained in one compound variable -- 'data'.
+
 The "files" contains a sequence of hash-maps containing all the headers of the file and "content" for the content of this file.
 
 ## License
