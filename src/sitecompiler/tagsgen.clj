@@ -45,28 +45,30 @@
   ;; 1) Найти подходящий template
   ;; 2) Найти fl-chunks с этим же тэгом
   ;; 3) Сгенерить страницы списков
-  (let [templ (first (filter #(= (:file-name %) (:list-template cfg-tag))
-                             templates))
-        chunks (:chunks (first (filter #(= (:tag %) (:tag cfg-tag))
-                                       fl-chunks)))
-        renderer (first (filter #(.supported? % (:file-ext templ))
-                                renderers))]
-    (if (or (not templ) (not renderer))
-      (do (println (bold-red (str "Can't render tags list '" (:tag cfg-tag) "'!")))
-          (println "Template present:" (yes-no templ))
-          (println "Renderer present:" (yes-no renderer))
-          (System/exit -1)))
-    (doall (map #(-> %
-                     (assoc :content (.render renderer (:content templ) %))
-                     (dissoc :files))
-                chunks))))
+  (if (:list-template cfg-tag) ;; Можем и не генерить список, если не указали шаблона
+    (let [templ (first (filter #(= (:file-name %) (:list-template cfg-tag))
+                               templates))
+          chunks (:chunks (first (filter #(= (:tag %) (:tag cfg-tag))
+                                         fl-chunks)))
+          renderer (first (filter #(.supported? % (:file-ext templ))
+                                  renderers))]
+      (if (or (not templ) (not renderer))
+        (do (println (bold-red (str "Can't render tags list '" (:tag cfg-tag) "'!")))
+            (println "Template present:" (yes-no templ))
+            (println "Renderer present:" (yes-no renderer))
+            (System/exit -1)))
+      (doall (map #(-> %
+                       (assoc :content (.render renderer (:content templ) %))
+                       (dissoc :files))
+                  chunks)))))
 
 
 ;; tg-chunks: {:tag :chunks {:next-index :prev-index :current-index :files}}
 (defn generate [config templates tg-chunks renderers]
-  (reduce concat (map (partial generate-tags-list
-                               templates
-                               renderers
-                               tg-chunks)
-                      (:tags-pages config))))
+  (reduce concat (filter identity
+                         (map (partial generate-tags-list
+                                       templates
+                                       renderers
+                                       tg-chunks)
+                              (:tags-pages config)))))
 

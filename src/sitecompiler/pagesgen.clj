@@ -2,28 +2,36 @@
   (:use io.aviso.ansi
         sitecompiler.common))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Individual pages from tags lists
+
 (defn- generate-all-tags-pages [templates renderers input-files cfg-tag]
-  (let [templ (first (filter #(= (:file-name %) (:page-template cfg-tag)) templates))
-        files (filter #(contains? (:tags %) (:tag cfg-tag))
-                      input-files)
-        renderer (first (filter #(.supported? % (:file-ext templ))
-                                renderers))]
-    (if (or (not templ) (not renderer))
-      (do (println (bold-red (str "Can't render tags pages for tag '" (:tag cfg-tag) "'!")))
-          (println "Template present:" (yes-no templ))
-          (println "Renderer present:" (yes-no renderer))
-          (System/exit -1)))
-    {:tag (:tag cfg-tag)
-     :files (doall (map #(assoc % :content (.render renderer (:content templ) %))
-                        files))}))
+  (if (:page-template cfg-tag)  ;; Можем и не генерить отдельные страницы, если не указали шаблона
+    (let [templ (first (filter #(= (:file-name %) (:page-template cfg-tag)) templates))
+          files (filter #(contains? (:tags %) (:tag cfg-tag))
+                        input-files)
+          renderer (first (filter #(.supported? % (:file-ext templ))
+                                  renderers))]
+      (if (or (not templ) (not renderer))
+        (do (println (bold-red (str "Can't render tags pages for tag '" (:tag cfg-tag) "'!")))
+            (println "Template present:" (yes-no templ))
+            (println "Renderer present:" (yes-no renderer))
+            (System/exit -1)))
+      {:tag (:tag cfg-tag)
+       :files (doall (map #(assoc % :content (.render renderer (:content templ) %))
+                          files))})))
 
 (defn generate-tags-pages [config templates input-files renderers]
-  (doall (map (partial generate-all-tags-pages
-                       templates
-                       renderers
-                       input-files)
-              (:tags-pages config))))
+  (doall (filter identity
+                 (map (partial generate-all-tags-pages
+                               templates
+                               renderers
+                               input-files)
+                      (:tags-pages config)))))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Just single pages
 
 (defn- generate-all-single-pages [templates renderers input-files cfg]
   (let [templ (first (filter #(= (:file-name %) (:template cfg)) templates))
