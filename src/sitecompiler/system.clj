@@ -38,7 +38,7 @@
         mstrenderer (mst/new-mst-renderer)
         hcrenderer (hc/new-hc-renderer)
         cumarenderer (cuma/new-cuma-renderer)
-        fleetrenderer (cuma/new-fleet-renderer)
+        fleetrenderer (fleet/new-fleet-renderer)
 
         rendrers-list [mstrenderer
                        hcrenderer
