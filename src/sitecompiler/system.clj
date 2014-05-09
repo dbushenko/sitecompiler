@@ -40,33 +40,43 @@
         cumarenderer (cuma/new-cuma-renderer)
         fleetrenderer (fleet/new-fleet-renderer)
 
+        ;; Разобрать все входные файлы по тегам.
+        ;; Эти списки не адаптированы для pagination,
+        ;; это просто набор входных даных, доступный при
+        ;; генерации любой страницы
+        files-by-tags (tg/split-by-tags input-files)
+        
+
         rendrers-list [mstrenderer
                        hcrenderer
                        cumarenderer
                        fleetrenderer]
 
-        ;; Собрать нужные тэги
+        ;; Собрать входные файлы в наборы фрагментов,
+        ;; один фрагмент для -- для одной страницы списка
         tags-chunks (tg/chunks config
                                input-files)
 
-        ;; Сгенерить одиночные страницы без тегов
-        single-pages (pg/generate-single-pages config
-                                               templates
-                                               input-files
-                                               rendrers-list)
-
         ;; Сгенерировать списки страниц по тегам
         tags-lists (tg/generate config
+                                files-by-tags
                                 templates
                                 tags-chunks
                                 rendrers-list)
 
         ;; Сгенерить одиночные страницы по тегам
         tags-pages (pg/generate-tags-pages config
+                                           files-by-tags
                                            templates
                                            input-files
                                            rendrers-list)
 
+        ;; Сгенерить одиночные страницы без тегов
+        single-pages (pg/generate-single-pages config
+                                               files-by-tags
+                                               templates
+                                               input-files
+                                               rendrers-list)
         ]
     {:config config
      :tags-lists tags-lists

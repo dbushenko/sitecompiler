@@ -32,7 +32,8 @@
      :chunks (make-next-prev-chunk fl t)}))
 
 ;; Разбить набор входных файлов по тэгам, а внутри каждого
-;; тэга -- на наборы фрагментов
+;; тэга -- на наборы фрагментов, из которых будут сформированы
+;; страницы списка
 (defn chunks [config input-files]
   (let [prep-tag (partial prepare-tag
                           (:pages-in-list config)
@@ -40,7 +41,7 @@
         tags (doall (map prep-tag (:tags-pages config)))]
     tags))
 
-(defn generate-tags-list [templates renderers fl-chunks cfg-tag]
+(defn generate-tags-list [files-by-tags templates renderers fl-chunks cfg-tag]
   ;; Для cfg-tag:
   ;; 1) Найти подходящий template
   ;; 2) Найти fl-chunks с этим же тэгом
@@ -58,17 +59,43 @@
             (println "Renderer present:" (yes-no renderer))
             (System/exit -1)))
       (doall (map #(-> %
-                       (assoc :content (.render renderer (:content templ) %))
+                       (assoc :content (.render renderer (:content templ) (assoc % :data files-by-tags)))
                        (dissoc :files))
                   chunks)))))
 
 
 ;; tg-chunks: {:tag :chunks {:next-index :prev-index :current-index :files}}
-(defn generate [config templates tg-chunks renderers]
+(defn generate [config files-by-tags templates tg-chunks renderers]
   (reduce concat (filter identity
                          (map (partial generate-tags-list
+                                       files-by-tags
                                        templates
                                        renderers
                                        tg-chunks)
                               (:tags-pages config)))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Input data
+;;
+(defn filter-by-tag [files tag]
+  (let [fl (reverse
+            (sort-by
+             :file-name
+             (filter #(contains? (:tags %) tag) files)))]
+    {:tag tag
+     :data fl}))
+
+(defn get-all-tags [input-files]
+  (loop [res #{}
+         fl input-files]
+    (if (empty? fl)
+      (into #{} res)
+      (recur (concat res (:tags (first fl)))
+             (next fl)))))
+
+(defn split-by-tags [input-files]
+  (let [all-tags (get-all-tags input-files)
+        data (map #(filter-by-tag input-files %) all-tags)]
+    (reduce #(assoc %1 (:tag %2) (:data %2)) {} data)))
 

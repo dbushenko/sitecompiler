@@ -9,7 +9,8 @@
 
   Renderer
   (render [this templ data]
-     (clst/render templ data)))
+    (println "####" data)
+    (clst/render templ data)))
 
 
 (defn new-mst-renderer []

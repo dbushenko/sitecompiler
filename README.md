@@ -74,14 +74,26 @@ There is one special header type -- #tags. This header contains a list of tags f
 
 ### Templates
 
-The following values are available within the template:
+The following values are available within the list template:
 
 * prev -- for previous list file name;
 * next -- for next list file name;
 * current -- current list file name;
-* files -- all input files within this list file;
+* files -- all input files within this list file (prepared for pagination);
 * tag -- current tag for which this list was generated;
-* latest -- latest file.
+* latest -- latest file;
+* data -- a map containing all tags and sorted list of input files corresponding those tags. These lists are not paginated.
+
+
+The following values are available within the single page (or tag page) template:
+
+* content -- the content of the input file without the headers;
+* file-name -- the file name without extension;
+* file-ext -- file extension;
+* tags -- list of tags if available;
+* data -- a map containing all tags and sorted list of input files corresponding those tags. These lists are not paginated.
+* all the headers you have specified in the input file.
+
 
 In Fleet templates they are contained in one compound variable -- 'data'.
 
