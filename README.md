@@ -100,6 +100,18 @@ The following values are available within the single page (or tag page) template
 
 In Fleet templates all data is contained in one compound variable -- 'data'.
 
+## Roadmap
+
+I plan to add following features:
+
+* ASCIIdoc input format;
+* org-mode input format;
+* tests;
+* better documentation;
+* probably -- static types with core.typed.
+
+You are welcome with proposals.
+
 ## License
 
 Copyright © 2013-2014 by Dmitry Bushenko
