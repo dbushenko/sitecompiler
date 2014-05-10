@@ -97,5 +97,5 @@
 (defn split-by-tags [input-files]
   (let [all-tags (get-all-tags input-files)
         data (map #(filter-by-tag input-files %) all-tags)]
-    (reduce #(assoc %1 (:tag %2) (:data %2)) {} data)))
+    (reduce #(assoc %1 (keyword (:tag %2)) (:data %2)) {} data)))
 
