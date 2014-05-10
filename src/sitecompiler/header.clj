@@ -1,18 +1,6 @@
 (ns sitecompiler.header
   (:use io.aviso.ansi))
 
-(def ^:dynamic *date-format* (java.text.SimpleDateFormat. "yyyy-MM-dd"))
-(def ^:dynamic *date-time-format* (java.text.SimpleDateFormat. "yyyy-MM-dd hh:mm"))
-
-(defn- try-parse-date [str-date]
-  (try
-    (.parse *date-format* str-date)
-    (catch Exception e
-      (try
-        (.parse *date-time-format* str-date)
-        (catch Exception e2
-          nil)))))
-
 (defn parse-tags [tags-string]
   (let [arr (.split tags-string " ")]
     (apply hash-set (filter #(not (empty? %)) arr))))

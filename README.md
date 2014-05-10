@@ -84,7 +84,7 @@ The following values are available within the list template:
 * files -- all input files within this list file prepared for pagination (see the content of each input file further in 'Pages templates' section);
 * tag -- current tag for which this list was generated;
 * latest -- latest file;
-* data -- a map containing all tags and sorted list of input files corresponding those tags. These lists are not paginated.
+* data -- a map containing all tags and sorted list of input files corresponding those tags (tags are keywords here). These lists are not paginated.
 
 #### Pages templates
 
@@ -94,7 +94,7 @@ The following values are available within the single page (or tag page) template
 * file-name -- the file name without extension;
 * file-ext -- file extension;
 * tags -- list of tags if available;
-* data -- a map containing all tags and sorted lists of input files corresponding those tags. These lists are not paginated.
+* data -- a map containing all tags and sorted lists of input files corresponding those tags (tags are keywords here). These lists are not paginated.
 * all the headers you have specified in the input file.
 
 
