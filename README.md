@@ -21,9 +21,10 @@ The distribution contains an example of a site for generation. This example site
 
 In "config.clj"  you may specify the follosing options:
 
-* :input-dir -- the directory where the input files (articles) are stored. Default value is "input".
-* :output-dir -- the directory where all generated files are stored. Default value is "output".
-* :templates-dir -- the directory where all page templates are stored. Default values is "templates".
+* :base-dir -- the directory where input, output and templates dirs are contained.
+* :input-dir -- the directory where the input files (articles) are stored, relative to :base-dir. Default value is "input".
+* :output-dir -- the directory where all generated files are stored, relative to :base-dir. Default value is "output".
+* :templates-dir -- the directory where all page templates are stored, relative to :base-dir. Default values is "templates".
 * :pages-in-list -- how many pages are shown in a list. Default value is 5.
 
 You also may specify how to generate the pages. For single pages (which are not included in lists) you may specify the following options:

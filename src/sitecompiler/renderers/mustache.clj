@@ -9,7 +9,6 @@
 
   Renderer
   (render [this templ data]
-    (println "####" data)
     (clst/render templ data)))
 
 
