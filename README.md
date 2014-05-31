@@ -82,7 +82,7 @@ The following values are available within the list template:
 * prev -- for previous list file name;
 * next -- for next list file name;
 * current -- current list file name;
-* files -- all input files within this list file prepared for pagination (see the content of each input file further in 'Pages templates' section);
+* files -- all input files within this list file prepared for pagination (see the content of each input file further in 'Pages templates' section); also contains option 'page-file-name' in each file item for the generated page name;
 * tag -- current tag for which this list was generated;
 * latest -- latest file;
 * data -- a map containing all tags and sorted list of input files corresponding those tags (tags are keywords here). These lists are not paginated.

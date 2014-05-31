@@ -22,12 +22,12 @@
 
 (defn prepare-tag [pg-count files tag]
   (let [t (:tag tag)
-        fl (partition-all
-            pg-count
-            (reverse
-             (sort-by
-              :file-name
-              (filter #(contains? (:tags %) t) files))))]
+        fl (->> files
+                (filter #(contains? (:tags %) t))
+                (sort-by :file-name)
+                reverse
+                (map #(assoc % :page-file-name (str t "-" (:file-name %) ".html")))
+                (partition-all pg-count))]
     {:tag t
      :chunks (make-next-prev-chunk fl t)}))
 
@@ -47,19 +47,21 @@
   ;; 2) Найти fl-chunks с этим же тэгом
   ;; 3) Сгенерить страницы списков
   (if (:list-template cfg-tag) ;; Можем и не генерить список, если не указали шаблона
-    (let [templ (first (filter #(= (:file-name %) (:list-template cfg-tag))
+    (let [tag-name (:tag cfg-tag)
+          templ (first (filter #(= (:file-name %) (:list-template cfg-tag))
                                templates))
-          chunks (:chunks (first (filter #(= (:tag %) (:tag cfg-tag))
+          chunks (:chunks (first (filter #(= (:tag %) tag-name)
                                          fl-chunks)))
           renderer (first (filter #(.supported? % (:file-ext templ))
                                   renderers))]
       (if (or (not templ) (not renderer))
-        (do (println (bold-red (str "Can't render tags list '" (:tag cfg-tag) "'!")))
+        (do (println (bold-red (str "Can't render tags list '" tag-name "'!")))
             (println "Template present:" (yes-no templ))
             (println "Renderer present:" (yes-no renderer))
             (System/exit -1)))
       (doall (map #(-> %
-                       (assoc :content (.render renderer (:content templ) (assoc % :data files-by-tags)))
+                       (assoc :content (.render renderer (:content templ)
+                                                (assoc % :data files-by-tags)))
                        (dissoc :files))
                   chunks)))))
 
