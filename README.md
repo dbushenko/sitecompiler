@@ -17,8 +17,6 @@ Posts:
 
 ### Config file
 
-The distribution contains an example of a site for generation. This example site consists of a directory "site" and file "config.clj". Yes, "config.clj" is a part of site example, not the sitecompiler engine.
-
 In "config.clj"  you may specify the follosing options:
 
 * :base-dir -- the directory where input, output and templates dirs are contained.
