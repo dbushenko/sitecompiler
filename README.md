@@ -47,9 +47,9 @@ Following config option describes how to generate lists of articles:
 * :list-template -- the template name (without extension) which describes how to generate the list of files.
 * :page-template -- the template name (without extension) for generating individual pages from this list.
 
-Run this config file as following:
+Run example config file as following:
 
-	$ lein run config.clj
+	$ lein run examples/step1/config.clj
 
 ### Input files
 	

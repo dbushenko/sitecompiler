@@ -4,9 +4,9 @@
 
 (defn make-list-file-name [tag num]
   (case num
-    1 tag
     nil nil
-    (str tag num)))
+    1 (str tag ".html")
+    (str tag num ".html")))
 
 (defn make-next-prev-chunk [chunks tag]
   (doall (map

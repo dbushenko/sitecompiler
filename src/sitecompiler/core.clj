@@ -6,7 +6,7 @@
 (defn- save-file [output name content]
   (let [s java.io.File/separator
         outDir (if (.endsWith output s) output (str output s))
-        fname (str outDir name ".html")]
+        fname (str outDir name)]
     (spit fname content)))
 
 (defn save-tags-lists [system]
@@ -23,7 +23,7 @@
                   (let [tag (:tag tag-page)
                         files (:files tag-page)]
                     (dorun (map #(save-file output
-                                            (str tag "-" (:file-name %))
+                                            (str tag "-" (:file-name %) ".html")
                                             (:content %))
                             files))))
                 tags-pages))))
@@ -31,7 +31,7 @@
 (defn save-single-pages [system]
   (let [single-pages (:single-pages system)
         output (-> system :config :output-dir)]
-    (dorun (map #(save-file output (:file-name %) (:content %))
+    (dorun (map #(save-file output (str (:file-name %) ".html") (:content %))
                 single-pages))))
 
 (defn -main [& args]
