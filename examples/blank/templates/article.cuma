@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blank SiteCompiler template</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+	    <h2>$(title)</h2>
+	    <div class="article-info">Posted on <time datetime="$(date)">$(date)</time> by $(author)</div>
+
+        $(raw content)
+
+        <br/>
+        <a href="index.html">Index</a>
+            
+  </body>
+</html>

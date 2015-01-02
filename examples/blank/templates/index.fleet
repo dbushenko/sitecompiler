@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blank SiteCompiler template</title>
+    <link rel="stylesheet" href="styles.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+    <(for [f (:files data)] ">
+	  <article>
+	    <h2><(:title f)></h2>
+	    <div class="article-info">Posted on <time datetime="<(:date f)>"><(:date f)></time> by <(:author f)></div>
+
+            <(:content f)>
+            
+	    <a href="<(:page-file-name f)>" class="button">Read more</a>
+	  </article>
+
+      <")>
+
+      <br/>
+      
+      <(if (:next data) "><a href='<(:next data)>' class='button'>Newer</a>&nbsp;<" "")>
+        <(if (:prev data) "><a href='<(:prev data)>' class='button'>Older</a><" "")>
+
+
+      <br/><br/>
+      <a href="contact.html">Contacts</a>
+  </body>
+</html>
