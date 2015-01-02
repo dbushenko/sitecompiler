@@ -1,6 +1,8 @@
 # sitecompiler
 
-Static site compiler. For now accepts the following input formats:
+Static site compiler. See leiningen plugin here: https://github.com/dbushenko/lein-sitecompiler
+
+For now accepts the following input formats:
 
 Templates:
 * Html with Mustache (https://github.com/fhd/clostache)
@@ -99,21 +101,9 @@ The following values are available within the single page (or tag page) template
 
 In Fleet templates all data is contained in one compound variable -- 'data'.
 
-## Roadmap
-
-I plan to add following features:
-
-* ASCIIdoc input format;
-* org-mode input format;
-* tests;
-* better documentation;
-* probably -- static types with core.typed.
-
-You are welcome with proposals.
-
 ## License
 
-Copyright © 2013-2014 by Dmitry Bushenko
+Copyright © 2013-2015 by Dmitry Bushenko
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
