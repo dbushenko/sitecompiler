@@ -1,4 +1,4 @@
-(defproject sitecompiler "0.2.4-SNAPSHOT"
+(defproject sitecompiler "0.2.5"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
