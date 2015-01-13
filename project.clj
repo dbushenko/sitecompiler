@@ -1,6 +1,6 @@
-(defproject sitecompiler "0.2.5"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject sitecompiler "0.2.6"
+  :description "Static site compiler"
+  :url "https://github.com/dbushenko/sitecompiler"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
