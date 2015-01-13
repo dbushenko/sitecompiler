@@ -9,6 +9,7 @@ Templates:
 * Hiccup (https://github.com/weavejester/hiccup)
 * Cuma (https://github.com/liquidz/cuma)
 * Fleet (https://github.com/Flamefork/fleet)
+* Selmer (https://github.com/yogthos/Selmer)
 
 Posts:
 * Markdown (https://github.com/yogthos/markdown-clj)

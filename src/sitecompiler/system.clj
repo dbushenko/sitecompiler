@@ -6,6 +6,7 @@
             [sitecompiler.parsers.hcparser :as hcp]
             [sitecompiler.renderers.mustache :as mst]
             [sitecompiler.renderers.cuma :as cuma]
+            [sitecompiler.renderers.selmer :as selmer]
             [sitecompiler.renderers.fleet :as fleet]
             [sitecompiler.renderers.hiccup :as hc]
             [sitecompiler.tagsgen :as tg]
@@ -38,6 +39,7 @@
         mstrenderer (mst/new-mst-renderer)
         hcrenderer (hc/new-hc-renderer)
         cumarenderer (cuma/new-cuma-renderer)
+        selmerrenderer (selmer/new-selmer-renderer)
         fleetrenderer (fleet/new-fleet-renderer)
 
         ;; Разобрать все входные файлы по тегам.
@@ -50,7 +52,8 @@
         rendrers-list [mstrenderer
                        hcrenderer
                        cumarenderer
-                       fleetrenderer]
+                       fleetrenderer
+                       selmerrenderer]
 
         ;; Собрать входные файлы в наборы фрагментов,
         ;; один фрагмент для -- для одной страницы списка
