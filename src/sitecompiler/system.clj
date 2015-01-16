@@ -49,6 +49,7 @@
         files-by-tags (tg/split-by-tags input-files)
         
 
+        ;; Рендереры шаблонов
         rendrers-list [mstrenderer
                        hcrenderer
                        cumarenderer

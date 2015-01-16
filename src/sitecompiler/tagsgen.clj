@@ -12,6 +12,7 @@
   (doall (map
           (fn [ch i]
             (let [ind (inc i)]
+              ;; Данные, доступные при генерации списка
               {:prev (make-list-file-name tag (if (= ind (count chunks)) nil (inc ind)))
                :next (make-list-file-name tag (if (= ind 1) nil (dec ind)))
                :current (make-list-file-name tag ind)
@@ -96,6 +97,7 @@
       (recur (concat res (:tags (first fl)))
              (next fl)))))
 
+;; Функция создает коллекцию входных файлов, разобранных по тэгам
 (defn split-by-tags [input-files]
   (let [all-tags (get-all-tags input-files)
         data (map #(filter-by-tag input-files %) all-tags)]
